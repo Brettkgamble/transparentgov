@@ -19,7 +19,7 @@ from psycopg2 import Error
 # from geoalchemy2 import Geography, Geometry
 
 def main():
-
+    print('In Main')
     # engine below for local PostgresSql access
     try:
         # connect to existing database
