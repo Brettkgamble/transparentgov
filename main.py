@@ -1,4 +1,8 @@
-from os import environ
+import requests
+import os
+import csv
+import pandas as pd
+# from os import environ
 from sqlalchemy import MetaData, create_engine, asc
 from sqlalchemy.orm import sessionmaker
 
@@ -22,7 +26,7 @@ def main():
     print('In Main')
     # engine below for local PostgresSql access
     try:
-        # connect to existing database
+        # connect to existing database - localhost
         connection = psycopg2.connect(user="postgres",
                                       password="5413CrossFit2018",
                                       host="localhost",
@@ -54,6 +58,27 @@ def main():
     #
     # Session = sessionmaker(bind=engine)
     # session = Session()
+
+
+    # download  csv file
+    print('Downloading .....')
+    col_names = ["Ministry", "Position", "Name", "Type", "Date", "Amount",
+             "Description", "Receipt 1", "Receipt 2", "Receipt 3"]
+    df = pd.read_csv(r'https://expenses.alberta.ca/DownloadData.aspx?type=csv'
+                   r'&d=IsVE/OcdpNZJ5rBbvji3qw', names=col_names,
+                     low_memory=False)
+
+    # Saving the dataframe
+    df.to_csv('expenses.csv')
+
+    print(df.head())
+
+
+    # for row in cr:
+    #     print(row)
+    #     break
+
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
