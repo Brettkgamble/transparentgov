@@ -73,10 +73,10 @@ def main():
 
     print(df.head())
 
-
-    # for row in cr:
-    #     print(row)
-    #     break
+    # Save to expenses table
+    # Identify dups.  If duplicate then add to duplicate table
+    # if record already exists then simply update the lastseen field with
+    # current date
 
 
 
