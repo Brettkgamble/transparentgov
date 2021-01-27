@@ -64,39 +64,6 @@ def main():
     #         connection.close()
     #         print("PostgreSQL connection is closed")
 
-
-
-    # engine below for GAE PostgresSql access
-
-    # try:
-    #     # connect to existing database - localhost
-    #     connection = psycopg2.connect(user="postgres",
-    #                                   password="5413CrossFit2018",
-    #                                   host="34.70.40.80",
-    #                                   port="5432",
-    #                                   database="transgov")
-    #     # Create a cursor to perform database operations
-    #     cursor = connection.cursor()
-    #     # Print PosthreSQL details
-    #     print("PostgreSQL information")
-    #     print(connection.get_dsn_parameters(), "\n")
-    #     # Executing a SQL query
-    #     cursor.execute("SELECT version();")
-    #     # Fetch Result
-    #     record = cursor.fetchone()
-    #     print("You are connected to - ", record, "\n")
-    # except (Exception, Error) as error:
-    #     print("Error while connecting to PostgreSQL", error)
-    #
-    # finally:
-    #     if (connection):
-    #         cursor.close()
-    #         connection.close()
-    #         print("PostgreSQL connection is closed")
-
-        # Another way to connect to GAE PostgreSQL - Connection string can be
-        # placed in the yaml file and read from there
-
     # Engine below for Google Cloud PostgreSQL access.
     engine = create_engine('postgresql+psycopg2://postgres:5413CrossFit2018@34'
                            '.70.40.80/transgov')
