@@ -77,16 +77,26 @@ def main():
     # download  csv file
     print('Downloading .....')
 
-    # col_names = ["Ministry", "Position", "Name", "Type", "Date", "Amount",
-    #          "Description", "Receipt 1", "Receipt 2", "Receipt 3"]
+    col_names = ["Ministry", "Position", "Name", "Type", "Date", "Amount",
+             "Description", "Receipt 1", "Receipt 2", "Receipt 3"]
+
     # df = pd.read_csv(r'https://expenses.alberta.ca/DownloadData.aspx?type=csv'
     #                r'&d=IsVE/OcdpNZJ5rBbvji3qw', names=col_names,
     #                  low_memory=False)
-    #
-    # # Saving the dataframe
+
+    # Saving the dataframe
+    # print('Saving to CSV ...')
     # df.to_csv('expenses.csv')
-    #
-    # print(df.head())
+
+    print('Reading from file...')
+    df=pd.read_csv('expenses.csv', names=col_names, low_memory=False)
+
+    # Process the dataframe
+    for index, row in df.iterrows():
+        print(row)
+        break
+
+    print(df.head())
 
     # Save to expenses table
     print('Saving csv locally .....')

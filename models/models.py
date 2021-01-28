@@ -24,6 +24,7 @@ class ExpensesRaw(Base):
     position = Column(String())
     name = Column(String())
     type = Column(String())
+    category = Column(String())
     expense_date = Column(DateTime())
     amount = Column(Float())
     description = Column(String())
