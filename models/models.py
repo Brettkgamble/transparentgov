@@ -51,3 +51,20 @@ class ExpensesRaw(Base):
             "date_last_found='{self.date_last_found}' , " \
                "created_at='{self.created_at}' , " \
                "updated_at='{self.updated_at}')".format(self=self)
+
+class Filenames(Base):
+    """
+    Filenames Table
+    """
+    __tablename__ = 'filenames'
+
+    id = Column(Integer(), autoincrement=True, primary_key=True)
+    name = Column(String())
+    records = Column(Integer())
+    created_at = Column(DateTime(), default=datetime.now)
+
+    def __repr__(self):
+        return "Filenames(id='{self.id}' , " \
+            "name='{self.name}' , " \
+               "records='{self.records}' , " \
+               "created_at='{self.created_at}')".format(self=self)
