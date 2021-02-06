@@ -31,6 +31,7 @@ class ExpensesRaw(Base):
     receipt1 = Column(String())
     receipt2 = Column(String())
     receipt3 = Column(String())
+    is_duplicate = Column(Boolean(), default=False)
     date_last_found = Column(DateTime(), default=datetime.now)
     created_at = Column(DateTime(), default=datetime.now)
     updated_at = Column(DateTime(), default=datetime.now,
@@ -48,7 +49,8 @@ class ExpensesRaw(Base):
             "receipt1='{self.receipt1}' , "\
             "receipt2='{self.receipt2}' , " \
             "receipt3='{self.receipt3}' , " \
-            "date_last_found='{self.date_last_found}' , " \
+               "is_duplicate='{self.is_duplicate}' , " \
+               "date_last_found='{self.date_last_found}' , " \
                "created_at='{self.created_at}' , " \
                "updated_at='{self.updated_at}')".format(self=self)
 
