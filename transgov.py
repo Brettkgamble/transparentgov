@@ -28,3 +28,10 @@ from datetime import datetime, timedelta, timezone
 from geoalchemy2 import Geography, Geometry
 
 run_all_flag = True
+
+### Setup the application
+app = Flask(__name__)
+
+# Wrap CORS around the app so that the server does not block machine to machine
+# or browser based requests
+CORS(app)
