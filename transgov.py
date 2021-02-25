@@ -71,3 +71,28 @@ def loadDfFromFile(filename):
     df=pd.read_csv(filename, names=col_names, low_memory=False, skiprows=2)
     df_size = len(df.index)
     print('Done...', df_size)
+    return df
+
+def fileCompare():
+    # compare the current download to the most previous download so that we can identify
+    # the changes and only process those.
+    # 1. Check file sizes
+    # 2. iterate through DF1 and lookup record in DF2
+    # 3.   if record exists then do nothing
+    # 4.   is this new record or a changed one? (hard to determine....we may have to manually see if dups become a problem)
+
+    # 4.   otherwise add record to database
+
+    # get the most recent entry in the table FileNames
+    prevFile = pd.read_sql(
+            session.query(Filenames).
+        order_by(Filenames.id.desc()).statement, session.bind)
+
+    previousFile = prevFile._get_value(0,'name')
+    print('Reading from previous file...', previousFile)
+
+    # open the file as a dataframe
+    prev_df = pd.read_csv(previousFile, names=col_names, low_memory=False, skiprows=2)
+    prev_df_size = len(prev_df.index)
+    print('Done...', prev_df_size)
+    return prev_df
