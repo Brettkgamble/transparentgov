@@ -96,3 +96,34 @@ def fileCompare():
     prev_df_size = len(prev_df.index)
     print('Done...', prev_df_size)
     return prev_df
+
+def saveFileNameToTable(filename, df_size):
+    # save file name to filenames table in database
+    filetosave = Filenames(
+            name=filename,
+            records = df_size,
+            created_at=datetime.now()
+        )
+    try:
+        session.add(filetosave)
+        session.commit()
+    except SQLAlchemyError as e:
+        session.rollback()
+        print('Could not save the new filename %s', filetosave)
+
+
+def dataframe_difference(df1, df2, which=None):
+    """Find rows which are different between two DataFrames."""
+    # compare the two dataframes
+    # https://hackersandslackers.com/compare-rows-pandas-dataframes/
+    comparison_df = df1.merge(
+        df2,
+        indicator=True,
+        how='outer'
+    )
+    if which is None:
+        diff_df = comparison_df[comparison_df['_merge'] != 'both']
+    else:
+        diff_df = comparison_df[comparison_df['_merge'] == which]
+    diff_df.to_csv('expenses/diff.csv')
+    return diff_df
