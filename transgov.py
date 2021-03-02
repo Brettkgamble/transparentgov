@@ -126,4 +126,9 @@ def dataframe_difference(df1, df2, which=None):
     else:
         diff_df = comparison_df[comparison_df['_merge'] == which]
     diff_df.to_csv('expenses/diff.csv')
+
     return diff_df
+
+def dataframe_diff(df, prev_df):
+    df_diff_df = dataframe_difference(df, prev_df)
+    return df_diff_df
