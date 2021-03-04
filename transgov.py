@@ -132,3 +132,8 @@ def dataframe_difference(df1, df2, which=None):
 def dataframe_diff(df, prev_df):
     df_diff_df = dataframe_difference(df, prev_df)
     return df_diff_df
+
+def mergeAndSaveDataframeDiff(df_diff_df):
+    df_diff_df._merge.unique()
+    filename = 'expenses/' + 'diff_' + str(time.strftime('%Y%m%d')) + ".csv"
+    df_diff_df.to_csv(filename)
